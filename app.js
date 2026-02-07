@@ -37,7 +37,7 @@ app.post("/send/mail", async (req, res) => {
 
   try {
     await sendEmail({
-      email: "pottendlanandini1@gmail.com",
+      toemail: "pottendlanandini1@gmail.com",
       subject: "GYM WEBSITE CONTACT",
       message,
       userEmail: email,

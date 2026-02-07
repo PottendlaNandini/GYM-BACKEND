@@ -2,6 +2,7 @@ import nodeMailer from "nodemailer";
 
 export const sendEmail = async (options) => {
   console.log("📨 Trying to send email...");
+   const { toEmail, subject, message, userEmail } = options;
 
   const transporter = nodeMailer.createTransport({
     service: process.env.SMTP_SERVICE, // gmail
@@ -23,6 +24,7 @@ export const sendEmail = async (options) => {
     console.log("✅ Email sent:", info.response);
   } catch (error) {
     console.log("❌ Email error:", error.message);
+    throw error;
   }
 };
 
