@@ -13,9 +13,9 @@ export const sendEmail = async (options) => {
 
   const mailOptions = {
     from: process.env.SMTP_MAIL,
-    to: options.email, // where YOU will receive email
-    subject: options.subject,
-    text: `${options.message}\n\nSender Email: ${options.userEmail}`,
+    to: toEmail, // where YOU will receive email
+    subject,
+    text: `${message}\n\nSender Email: ${userEmail}`,
   };
 
   try {
@@ -25,3 +25,11 @@ export const sendEmail = async (options) => {
     console.log("❌ Email error:", error.message);
   }
 };
+
+
+
+
+
+  
+
+  

@@ -2,8 +2,11 @@ import express from "express";
 import { config } from "dotenv";
 import cors from "cors";
 import { sendEmail } from "./utils/sendEmail.js";
+import serverless from "serverless-http";
 
-config({ path: "./config.env" });  // Load env first
+config({ path: "./config.env" });
+
+  // Load env first
 
 const app = express();              // Create app FIRST
 
@@ -13,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
    cors({ 
-   origin: "http://localhost:5174",
+   origin: process.env.FRONTEND_URL || "*",
    methods: ["POST"],
    credentials: true,
    }) 
@@ -53,6 +56,6 @@ app.post("/send/mail", async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server listening at port ${process.env.PORT}`);
-});
+
+
+export default serverless(app);
