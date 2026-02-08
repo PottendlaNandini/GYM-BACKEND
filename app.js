@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
    cors({ 
-   origin: "https://gmail-website-frontend.vercel.app",
+   origin: "https://gym-frontend-peach.vercel.app/",
    methods: ["POST"],
    credentials: true,
    }) 
