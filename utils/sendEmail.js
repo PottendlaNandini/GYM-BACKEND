@@ -2,7 +2,6 @@ import nodeMailer from "nodemailer";
 
 export const sendEmail = async (options) => {
   console.log("📨 Trying to send email...");
-   const { toEmail, subject, message, userEmail } = options;
 
   const transporter = nodeMailer.createTransport({
     service: process.env.SMTP_SERVICE, // gmail
@@ -14,9 +13,9 @@ export const sendEmail = async (options) => {
 
   const mailOptions = {
     from: process.env.SMTP_MAIL,
-    to: toEmail, // where YOU will receive email
-    subject,
-    text: `${message}\n\nSender Email: ${userEmail}`,
+    to: options.email, // where YOU will receive email
+    subject: options.subject,
+    text: `${options.message}\n\nSender Email: ${options.userEmail}`,
   };
 
   try {
@@ -24,14 +23,5 @@ export const sendEmail = async (options) => {
     console.log("✅ Email sent:", info.response);
   } catch (error) {
     console.log("❌ Email error:", error.message);
-    throw error;
   }
 };
-
-
-
-
-
-  
-
-  

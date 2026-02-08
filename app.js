@@ -2,11 +2,8 @@ import express from "express";
 import { config } from "dotenv";
 import cors from "cors";
 import { sendEmail } from "./utils/sendEmail.js";
-import serverless from "serverless-http";
 
-config({ path: "./config.env" });
-
-  // Load env first
+config({ path: "./config.env" });  // Load env first
 
 const app = express();              // Create app FIRST
 
@@ -16,13 +13,13 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
    cors({ 
-   origin: process.env.FRONTEND_URL || "*",
+   origin: "https://gmail-website-frontend.vercel.app",
    methods: ["POST"],
    credentials: true,
    }) 
 );
 
-app.get("/", (req, res) => res.send("Backend is running!"));
+
 app.post("/send/mail", async (req, res) => {
   console.log("BODY RECEIVED =>", req.body);
 
@@ -37,7 +34,7 @@ app.post("/send/mail", async (req, res) => {
 
   try {
     await sendEmail({
-      toemail: "pottendlanandini1@gmail.com",
+      email: "pottendlanandini1@gmail.com",
       subject: "GYM WEBSITE CONTACT",
       message,
       userEmail: email,
@@ -56,6 +53,6 @@ app.post("/send/mail", async (req, res) => {
   }
 });
 
-
-
-export default serverless(app);
+app.listen(process.env.PORT, () => {
+  console.log(`Server listening at port ${process.env.PORT}`);
+});
