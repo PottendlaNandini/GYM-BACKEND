@@ -18,7 +18,9 @@ app.use(
    credentials: true,
    }) 
 );
-
+app.get('/', (req, res) => {
+  res.send('Backend is running!');
+});
 
 app.post("/send/mail", async (req, res) => {
   console.log("BODY RECEIVED =>", req.body);
