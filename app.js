@@ -13,9 +13,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
    cors({ 
-   origin: "https://gym-frontend-peach.vercel.app/",
-   methods: ["POST"],
-   credentials: true,
+   origin: "https://your-frontend-name.vercel.app",
+    methods: ["GET", "POST"],
+    credentials: true,
    }) 
 );
 app.get('/', (req, res) => {
