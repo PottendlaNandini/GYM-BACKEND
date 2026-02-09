@@ -3,7 +3,7 @@ import { config } from "dotenv";
 import cors from "cors";
 import { sendEmail } from "./utils/sendEmail.js";
 
-config({ path: "./config.env" });  // Load env first
+config();  // Load env first
 
 const app = express();              // Create app FIRST
 
