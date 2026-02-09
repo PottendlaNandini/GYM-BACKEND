@@ -4,9 +4,21 @@ export const sendEmail = async (options) => {
   console.log("📨 Trying to send email...");
 
  
+const transporter = nodeMailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.SMTP_MAIL,
+    pass: process.env.SMTP_PASSWORD,
+  },
+  connectionTimeout: 5000,
+  greetingTimeout: 5000,
+  socketTimeout: 5000,
+});
 
 
-
+/*
   const transporter = nodeMailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
@@ -16,7 +28,7 @@ export const sendEmail = async (options) => {
     pass: process.env.SMTP_PASSWORD,
   },
 });
-
+*/
   const mailOptions = {
     from: process.env.SMTP_MAIL,
     to: options.email, // where YOU will receive email
