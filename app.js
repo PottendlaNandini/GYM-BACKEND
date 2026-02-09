@@ -10,10 +10,10 @@ const app = express();              // Create app FIRST
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+const PORT = process.env.PORT || 4000;
 app.use(
    cors({ 
-   origin: "https://your-frontend-name.vercel.app",
+   origin: "https://gym-frontend-peach.vercel.app",  
     methods: ["GET", "POST"],
     credentials: true,
    }) 
@@ -55,6 +55,6 @@ app.post("/send/mail", async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server listening at port ${process.env.PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server listening at port ${PORT}`);
 });
