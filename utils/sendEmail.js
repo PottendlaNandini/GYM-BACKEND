@@ -80,7 +80,7 @@ export const sendEmail = async (options) => {
 };
 */
 
-
+/*
 import nodemailer from "nodemailer";
 
 export const sendEmail = async ({ email, subject, message }) => {
@@ -104,3 +104,40 @@ export const sendEmail = async ({ email, subject, message }) => {
   console.log("✅ Email sent");
 };
 
+*/
+import axios from "axios";
+
+export const sendEmail = async ({ email, subject, message }) => {
+  try {
+    await axios.post(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        sender: {
+          name: "Gym Website",
+          email: "no-reply@gymapp.com" // can be anything
+        },
+        to: [
+          {
+            email: email
+          }
+        ],
+        subject: subject,
+        textContent: message
+      },
+      {
+        headers: {
+          "api-key": process.env.BREVO_API_KEY,
+          "Content-Type": "application/json"
+        }
+      }
+    );
+
+    console.log("✅ Email sent via Brevo API");
+  } catch (error) {
+    console.error(
+      "❌ Brevo API error:",
+      error.response?.data || error.message
+    );
+    throw error;
+  }
+};
