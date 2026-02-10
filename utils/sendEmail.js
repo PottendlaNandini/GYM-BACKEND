@@ -114,7 +114,7 @@ export const sendEmail = async ({ email, subject, message }) => {
       {
         sender: {
           name: "Gym Website",
-          email: "no-reply@gymapp.com" // can be anything
+          email: "pottendlanandini15@gmail.com" // can be anything
         },
         to: [
           {
