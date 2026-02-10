@@ -1,14 +1,9 @@
 
-
+/*
 import nodeMailer from "nodemailer";
 
 export const sendEmail = async (options) => {
   console.log("📨 Trying to send email...");
-
- 
-
-
-
 
   const transporter = nodeMailer.createTransport({
   host: "smtp.gmail.com",
@@ -34,7 +29,7 @@ export const sendEmail = async (options) => {
     console.log("❌ Email error:", error.message);
   }
 };
-
+*/
 
 
 /*
@@ -84,3 +79,28 @@ export const sendEmail = async (options) => {
   }
 };
 */
+
+
+import nodemailer from "nodemailer";
+
+export const sendEmail = async ({ email, subject, message }) => {
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT),
+    secure: false,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
+
+  await transporter.sendMail({
+    from: `"Gym Website" <${process.env.SMTP_USER}>`,
+    to: email,
+    subject,
+    text: message,
+  });
+
+  console.log("✅ Email sent");
+};
+
