@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 4000;
 app.use(
    cors({ 
    origin: "https://gym-frontend-peach.vercel.app",  
-    methods: ["GET", "POST"],
+    methods: ["POST"],
     credentials: true,
    }) 
 );
